@@ -47,14 +47,6 @@ export default function App() {
 				summary: taskSummary.current.value,
 			},
 		]);
-
-		saveTasks([
-			...tasks,
-			{
-				title: taskTitle.current.value,
-				summary: taskSummary.current.value,
-			},
-		]);
 	}
 
 	function deleteTask(index) {
@@ -63,27 +55,7 @@ export default function App() {
 		clonedTasks.splice(index, 1);
 
 		setTasks(clonedTasks);
-
-		saveTasks([...clonedTasks]);
 	}
-
-	function loadTasks() {
-		let loadedTasks = localStorage.getItem('tasks');
-
-		let tasks = JSON.parse(loadedTasks);
-
-		if (tasks) {
-			setTasks(tasks);
-		}
-	}
-
-	function saveTasks(tasks) {
-		localStorage.setItem('tasks', JSON.stringify(tasks));
-	}
-
-	useEffect(() => {
-		loadTasks();
-	}, []);
 
 	return (
 		<ColorSchemeProvider
